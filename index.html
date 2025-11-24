@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Are You an Alien?</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- LOGIN PAGE -->
+    <div id="login-screen" class="screen">
+        <h1 class="title">👽 Welcome, Earthling</h1>
+        <p class="subtitle">Access restricted. Only one special human may enter.</p>
+
+        <input type="text" id="nameInput" placeholder="Type your name..." />
+        <button onclick="checkName()">Enter the Spaceship</button>
+
+        <p id="error" class="error"></p>
+    </div>
+
+    <!-- QUIZ PAGE -->
+    <div id="quiz-screen" class="screen hidden">
+        <h1 class="title">👾 Are You an Alien?</h1>
+
+        <div id="quiz-container"></div>
+
+        <button id="nextBtn" onclick="nextQuestion()">Next</button>
+    </div>
+
+    <!-- RESULT PAGE -->
+    <div id="result-screen" class="screen hidden">
+        <h1 class="title">🛸 Results</h1>
+        <p id="result-text"></p>
+    </div>
+
+<script src="script.js"></script>
+</body>
+</html>

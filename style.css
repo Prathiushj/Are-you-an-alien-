@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    background: #1d0136;
+    font-family: "Comic Sans MS", sans-serif;
+    color: #fff;
+    text-align: center;
+}
+
+.screen {
+    padding: 40px;
+}
+
+.hidden {
+    display: none;
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+input {
+    padding: 12px;
+    width: 60%;
+    border-radius: 20px;
+    border: none;
+    font-size: 1rem;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #ff4df0;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: #ff29c5;
+}
+
+.error {
+    color: #ff6b6b;
+    margin-top: 10px;
+    height: 20px;
+}
+
+/* Cartoon Alien Style */
+#quiz-container {
+    margin: 20px auto;
+    width: 80%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 20px;
+}
+
+.option {
+    background: #8228ff;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.option:hover {
+    background: #a66bff;
+}
