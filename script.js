@@ -112,3 +112,16 @@ function generateResult() {
         </p>
     `;
 }
+
+function downloadImage() {
+    const card = document.getElementById("result-card");
+
+    html2canvas(card).then(canvas => {
+        const link = document.createElement("a");
+        link.download = "Alien_Result.png";
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+}
+
+
