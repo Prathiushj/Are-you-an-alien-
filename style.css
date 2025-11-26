@@ -1,124 +1,115 @@
-body {
-    background: linear-gradient(135deg, #0b0013, #1a0030, #2d0050);
-    background-attachment: fixed;
-    position: relative;
+/* -------- RESET -------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+/* -------- BACKGROUND -------- */
+body {
+    background: radial-gradient(circle at top, #1a0030, #0d0018 40%, #05000c);
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* Noise overlay for smooth gradient */
 body::before {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     pointer-events: none;
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAFhAIyCheZvQAAAABJRU5ErkJggg==");
-    opacity: 0.08; /* adjust if needed */
+    opacity: 0.05;
+    z-index: 1;
 }
 
+/* -------- SCREEN CONTAINER -------- */
+.screen {
+    position: relative;
+    z-index: 2;
+    padding: 50px 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+/* -------- TITLES -------- */
 .title {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin-bottom: 12px;
     color: #ffffff;
 }
 
 .subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    opacity: 0.8;
-    color: #dddddd;
+    font-size: 1.1rem;
+    opacity: 0.85;
+    margin-bottom: 25px;
 }
 
-/* Floating emoji animation */
-.floating-icons {
-    position: absolute;
-    top: -20px;
-    left: 10%;
-    font-size: 2.5rem;
-    opacity: 0.6;
-    animation: float 8s linear infinite;
-}
-.delay1 { left: 50%; animation-duration: 10s; }
-.delay2 { left: 80%; animation-duration: 12s; }
-
-@keyframes float {
-    0% { transform: translateY(0); opacity: 0.5; }
-    100% { transform: translateY(120vh); opacity: 0; }
-}
-
-.screen {
-    padding: 40px;
-}
-
-.hidden {
-    display: none;
-}
-
-.fade {
-    animation: fadeIn 0.8s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-
-/* Glass container */
-.glass {
-    background: rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(8px);
-    padding: 30px;
-    border-radius: 20px;
-    margin: 20px auto;
-    width: 80%;
-}
-
-#result-card {
-    padding: 30px;
-    width: 80%;
-    margin: auto;
+/* -------- LOGIN INPUT + BUTTON -------- */
+#login-screen {
+    margin-top: 80px;
 }
 
 input {
-    padding: 12px;
-    width: 60%;
-    border-radius: 25px;
+    width: 70%;
+    max-width: 500px;
+    padding: 14px 18px;
+    border-radius: 30px;
     border: none;
-    margin-top: 15px;
-    font-size: 1rem;
     outline: none;
+    font-size: 1rem;
+    margin-bottom: 15px;
 }
 
 button {
-    margin-top: 25px;
-    padding: 12px 30px;
+    display: inline-block;
+    padding: 14px 30px;
     background: #ff4df0;
     border: none;
-    border-radius: 25px;
-    font-size: 1.1rem;
+    border-radius: 30px;
     color: #fff;
+    font-size: 1.05rem;
     cursor: pointer;
-    transition: 0.2s;
-    box-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
+    transition: 0.2s ease;
+    margin-left: 10px;
 }
 
 button:hover {
-    transform: scale(1.08);
+    transform: scale(1.05);
     background: #ff2ecb;
 }
 
-.error {
-    color: #ff6b6b;
-    margin-top: 10px;
-    height: 20px;
+/* Center input + button on mobile */
+@media (max-width: 600px) {
+    input, button {
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0 !important;
+    }
 }
 
-/* Quiz Options */
+/* -------- QUIZ CONTAINER -------- */
+.glass {
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+/* -------- OPTIONS -------- */
 .option {
     background: #8228ff;
     padding: 14px;
-    margin: 12px;
+    margin: 12px 0;
     border-radius: 15px;
     cursor: pointer;
     transition: 0.2s;
@@ -131,56 +122,50 @@ button:hover {
 
 .option.selected {
     background: #d36aff;
-    transform: scale(1.07);
-    box-shadow: 0 0 12px #ff8aff;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #ff9aff;
 }
 
-.question {
-    margin-bottom: 20px;
+/* --------  RESULT CARD -------- */
+#result-card {
+    margin: auto;
+    width: 90%;
+    max-width: 500px;
 }
 
 .endmsg {
-    font-size: 1.2rem;
-    color: #ffbaff;
+    font-size: 1.15rem;
+    margin-top: 20px;
+    color: #ffcaff;
 }
 
-#login-screen input, 
-#login-screen button {
-    display: inline-block;
-    vertical-align: middle;
+/* -------- FLOATING DECORATIONS -------- */
+.floating-icons {
+    position: fixed;
+    top: -50px;
+    font-size: 2rem;
+    opacity: 0.25;
+    animation: float 12s ease-in-out infinite;
+    filter: blur(0.4px);
+    z-index: 0;
 }
 
-#login-screen input {
-    width: 50%;
-    margin-right: 10px;
+.delay1 { left: 20%; animation-duration: 15s; }
+.delay2 { left: 70%; animation-duration: 18s; }
+
+@keyframes float {
+    from { transform: translateY(-50px); }
+    to { transform: translateY(110vh); }
 }
 
+/* Hide on mobile for cleaner view */
 @media (max-width: 600px) {
-
-    input {
-        width: 80% !important;
-        margin-bottom: 15px;
-    }
-
-    button {
-        width: 80%;
-    }
-
-    #login-screen {
-        padding: 20px;
-    }
-
-    .glass {
-        width: 90%;
-        padding: 20px;
-    }
-
-    .option {
-        font-size: 0.95rem;
-        padding: 12px;
+    .floating-icons {
+        display: none;
     }
 }
 
-
-
-
+/* -------- HIDE UTILITY -------- */
+.hidden {
+    display: none;
+}
