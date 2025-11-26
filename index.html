@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Are You an Alien?</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -14,40 +14,33 @@
     <div class="floating-icons delay2">✨</div>
 
     <!-- LOGIN PAGE -->
-    <div id="login-screen" class="screen">
+    <div id="login-screen" class="screen active">
         <h1 class="title">👽 Welcome Back Agent</h1>
         <p class="subtitle">Access restricted. Only one special person may enter.</p>
 
         <div class="input-area">
-            <input type="text" id="nameInput" placeholder="Type your secret name..." />
-            <button id="enterBtn" onclick="checkName()">Enter the Spaceship</button>
+            <input type="text" id="nameInput" placeholder="Type your secret name...">
+            <button onclick="checkName()">Enter the Spaceship</button>
         </div>
 
         <p id="error" class="error"></p>
     </div>
 
     <!-- QUIZ PAGE -->
-    <div id="quiz-screen" class="screen hidden">
+    <div id="quiz-screen" class="screen">
         <h1 class="title">👾 Are You an Alien?</h1>
-
         <div id="quiz-container" class="glass"></div>
-
-        <div class="quiz-actions">
-            <button id="nextBtn" onclick="nextQuestion()">Next ▶</button>
-        </div>
     </div>
 
     <!-- RESULT PAGE -->
-    <div id="result-screen" class="screen hidden">
+    <div id="result-screen" class="screen">
         <h1 class="title">🛸 Your Alien Identity</h1>
 
         <div id="result-card" class="glass">
             <p id="result-text"></p>
         </div>
 
-        <div class="result-actions">
-            <button onclick="location.reload()">Play Again 🔁</button>
-        </div>
+        <button onclick="location.reload()">Play Again 🔁</button>
     </div>
 
 <script src="script.js"></script>
