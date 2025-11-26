@@ -16,6 +16,19 @@ body::before {
     opacity: 0.08; /* adjust if needed */
 }
 
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    opacity: 0.8;
+    color: #dddddd;
+}
+
 /* Floating emoji animation */
 .floating-icons {
     position: absolute;
@@ -167,6 +180,7 @@ button:hover {
         padding: 12px;
     }
 }
+
 
 
 
