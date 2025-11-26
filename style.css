@@ -1,179 +1,202 @@
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ---------------- RESET ---------------- */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+/* ---------------- BODY / BACKGROUND ---------------- */
+:root{
+  --accent:#ff4df0;
+  --accent-hover:#ff2ecb;
+  --card:#1a0030;
+  --glass: rgba(255,255,255,0.10);
 }
 
-/* BACKGROUND */
+html,body {
+  height:100%;
+}
+
 body {
-    background: radial-gradient(circle at top, #1a0030, #0d0018 40%, #05000c);
-    font-family: "Poppins", sans-serif;
-    color: #fff;
-    text-align: center;
-    overflow-x: hidden;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color:#fff;
+  text-align:center;
+  background: radial-gradient(circle at top, #1a0030, #0d0018 40%, #05000c);
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden; /* important: document-level no-scroll; each screen scrolls internally */
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* NOISE OVERLAY */
+/* subtle noise to reduce banding */
 body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAFhAIyCheZvQAAAABJRU5ErkJggg==");
-    opacity: 0.05;
+  content:"";
+  position:fixed; inset:0; pointer-events:none;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAFhAIyCheZvQAAAABJRU5ErkJggg==");
+  opacity:0.05;
+  z-index:0;
 }
 
-/* -------------------------------------------------- */
-/* 🔥 PERFECT SCREEN SYSTEM — NO SCROLL, NO SHIFTING  */
-/* -------------------------------------------------- */
+/* ---------------- SCREEN LAYOUT (FIXED) ---------------- */
+/* Every "screen" covers the viewport. Only .active shows (flex layout). */
 .screen {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 100vh;
-    padding: 20px;
-    display: none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100dvh;            /* dynamic viewport height (fix mobile vh issues) */
+  padding:20px;
+  display:none;
+  z-index:5;
+  overflow:hidden;          /* internal scroll controlled by .screen-inner.scrollable */
 }
 
-.screen.active {
-    display: flex;
-    flex-direction: column;
+.screen.active { display:flex; flex-direction:column; align-items:center; }
+
+/* screen-inner holds the content and can be scrollable when needed */
+.screen-inner {
+  width:100%;
+  max-width:900px;
+  margin:0 auto;
+  position:relative;
+  z-index:2;
 }
 
-/* LOGIN SCREEN CENTERED */
-#login-screen {
-    justify-content: center;
+/* allow internal vertical scrolling for long screens (quiz/result) */
+.screen-inner.scrollable {
+  height:100%;
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
+  padding-top:12px;
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
 }
 
-/* QUIZ + RESULT SCREEN (top aligned) */
-#quiz-screen,
-#result-screen {
-    padding-top: 40px;
+/* center only login content vertically */
+#login-screen .screen-inner {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:100%;
 }
 
-/* TITLES */
+/* quiz/result top-aligned (they use .scrollable) */
+#quiz-screen .screen-inner,
+#result-screen .screen-inner {
+  display:block;
+}
+
+/* ---------------- TITLES / SUBTITLE ---------------- */
 .title {
-    font-size: 2.3rem;
-    font-weight: 700;
-    margin-bottom: 12px;
+  font-size:2.3rem;
+  font-weight:700;
+  margin-bottom:10px;
 }
 
 .subtitle {
-    font-size: 1.1rem;
-    opacity: 0.85;
-    margin-bottom: 25px;
+  font-size:1.05rem;
+  opacity:0.85;
+  margin-bottom:22px;
 }
 
-/* INPUT AREA */
+/* ---------------- INPUT + BUTTON ---------------- */
 .input-area {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  align-items:center;
 }
 
-input {
-    width: 65%;
-    max-width: 400px;
-    padding: 15px 18px;
-    border-radius: 30px;
-    border: none;
-    outline: none;
-    font-size: 1rem;
+input[type="text"]{
+  width:65%;
+  max-width:520px;
+  padding:14px 18px;
+  border-radius:30px;
+  border:none;
+  outline:none;
+  font-size:1rem;
+  background:#eef3fb; /* soft input background for contrast */
+  color:#111;
 }
 
-/* BUTTON */
 button {
-    padding: 15px 30px;
-    background: #ff4df0;
-    border: none;
-    border-radius: 30px;
-    color: #fff;
-    font-size: 1.05rem;
-    cursor: pointer;
-    transition: 0.2s;
+  padding:14px 26px;
+  border-radius:30px;
+  border:none;
+  background:var(--accent);
+  color:#fff;
+  font-size:1.03rem;
+  cursor:pointer;
+  transition: transform .12s ease, background .12s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
 }
 
-button:hover {
-    transform: scale(1.05);
-    background: #ff2ecb;
+button:hover { transform:translateY(-2px); background:var(--accent-hover); }
+
+/* ---------------- GLASS CARD ---------------- */
+.glass{
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border-radius:18px;
+  padding:20px;
+  margin:18px auto;
+  width:92%;
+  max-width:520px;
+  text-align:center;
 }
 
-/* GLASS CARD */
-.glass {
-    background: rgba(255, 255, 255, 0.10);
-    backdrop-filter: blur(12px);
-    border-radius: 20px;
-    padding: 25px;
-    margin: 20px auto;
-    width: 90%;
-    max-width: 500px;
+/* ---------------- OPTIONS ---------------- */
+.option{
+  background:#8228ff;
+  margin:10px 0;
+  padding:14px;
+  border-radius:12px;
+  cursor:pointer;
+  transition: transform .12s, background .12s;
+  user-select:none;
 }
 
-/* OPTIONS */
-.option {
-    background: #8228ff;
-    padding: 14px;
-    margin: 12px 0;
-    border-radius: 14px;
-    cursor: pointer;
-    transition: 0.2s;
+.option:hover{ background:#a66bff; transform:translateY(-2px); }
+.option.selected{ background:#d36aff; transform:scale(1.02); box-shadow:0 8px 24px rgba(211,106,255,0.12); }
+
+/* ---------------- RESULT CARD ---------------- */
+#result-card{
+  background:var(--card);
+  border-radius:16px;
+  padding:20px;
+  border:2px solid rgba(255,255,255,0.08);
 }
 
-.option:hover {
-    background: #a66bff;
-    transform: scale(1.03);
-}
-
-.option.selected {
-    background: #d36aff;
-    transform: scale(1.05);
-    box-shadow: 0 0 10px #ff9aff;
-}
-
-/* RESULT CARD */
-#result-card {
-    background: #1a0030;
-    border: 2px solid rgba(255,255,255,0.1);
-    padding: 25px;
-}
-
-/* FLOATING DECOR */
+/* ---------------- FLOATING DECOR ---------------- */
 .floating-icons {
-    position: fixed;
-    top: -60px;
-    font-size: 2rem;
-    opacity: 0.25;
-    animation: float 14s ease-in-out infinite;
-    filter: blur(0.5px);
-    z-index: -1;
+  position:fixed;
+  top:-60px;
+  font-size:2rem;
+  opacity:0.22;
+  filter: blur(0.5px);
+  animation: float 14s linear infinite;
+  z-index:1;
 }
 
-.delay1 { left: 20%; animation-duration: 18s; }
-.delay2 { left: 70%; animation-duration: 20s; }
+.delay1{ left:18%; animation-duration:18s; }
+.delay2{ left:72%; animation-duration:20s; }
 
 @keyframes float {
-    from { transform: translateY(-60px); }
-    to { transform: translateY(120vh); }
+  from{ transform: translateY(-60px); } to{ transform: translateY(120vh); }
 }
 
-/* MOBILE FIXES */
-@media (max-width: 600px) {
-    input, button {
-        width: 100%;
-    }
-    .floating-icons {
-        display: none !important;
-    }
+/* ---------------- ACTIONS ---------------- */
+.quiz-actions{ display:flex; justify-content:center; margin-top:8px; }
+#nextBtn{ min-width:140px; border-radius:26px; }
+
+.result-actions{ display:flex; justify-content:center; margin-top:18px; }
+.result-actions button{ width:88%; max-width:420px; padding:14px; border-radius:28px; }
+
+/* ---------------- MOBILE TWEAKS ---------------- */
+@media (max-width:600px){
+  input, button { width:100%; }
+  .title { font-size:1.9rem; }
+  .glass { padding:16px; }
+  .floating-icons { display:none !important; }
 }
 
-/* ERROR */
-.error {
-    margin-top: 10px;
-    height: 20px;
-    color: #ff7777;
-}
+/* accessible hide utility (kept as fallback) */
+.hidden{ display:none !important; }
 
-.hidden { display: none; }
+/* error */
+.error{ color:#ff7777; margin-top:10px; height:20px; }
