@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Are You an Alien?</title>
     <link rel="stylesheet" href="style.css">
 
@@ -11,32 +11,36 @@
 </head>
 <body>
 
-    <!-- FLOATING ALIENS -->
+    <!-- Floating Decorations -->
     <div class="floating-icons">👽</div>
     <div class="floating-icons delay1">🛸</div>
     <div class="floating-icons delay2">✨</div>
 
     <!-- LOGIN PAGE -->
-    <div id="login-screen" class="screen fade">
-        <h1 class="title neon">👽 Welcome, Earthling</h1>
-        <p class="subtitle">Access restricted. Only one special human may enter.</p>
+    <div id="login-screen" class="screen">
+        <h1 class="title">👽 Welcome Back Agent</h1>
+        <p class="subtitle">Access restricted. Only one special person may enter.</p>
 
-        <input type="text" id="nameInput" placeholder="Type your secret name..." />
-        <button onclick="checkName()">Enter the Spaceship</button>
+        <div class="input-area">
+            <input type="text" id="nameInput" placeholder="Type your secret name...">
+            <button onclick="checkName()">Enter the Spaceship</button>
+        </div>
 
         <p id="error" class="error"></p>
     </div>
 
     <!-- QUIZ PAGE -->
-    <div id="quiz-screen" class="screen hidden fade">
-        <h1 class="title neon">👾 Are You an Alien?</h1>
+    <div id="quiz-screen" class="screen hidden">
+        <h1 class="title">👾 Are You an Alien?</h1>
+
         <div id="quiz-container" class="glass"></div>
+
         <button id="nextBtn" onclick="nextQuestion()">Next ▶</button>
     </div>
 
     <!-- RESULT PAGE -->
-    <div id="result-screen" class="screen hidden fade">
-        <h1 class="title neon">🛸 Results</h1>
+    <div id="result-screen" class="screen hidden">
+        <h1 class="title">🛸 Your Alien Identity</h1>
 
         <div id="result-card" class="glass">
             <p id="result-text"></p>
@@ -49,4 +53,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
