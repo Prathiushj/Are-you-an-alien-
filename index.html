@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Are You an Alien?</title>
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -20,8 +19,8 @@
         <p class="subtitle">Access restricted. Only one special person may enter.</p>
 
         <div class="input-area">
-            <input type="text" id="nameInput" placeholder="Type your secret name...">
-            <button onclick="checkName()">Enter the Spaceship</button>
+            <input type="text" id="nameInput" placeholder="Type your secret name..." />
+            <button id="enterBtn" onclick="checkName()">Enter the Spaceship</button>
         </div>
 
         <p id="error" class="error"></p>
@@ -33,7 +32,9 @@
 
         <div id="quiz-container" class="glass"></div>
 
-        <button id="nextBtn" onclick="nextQuestion()">Next ▶</button>
+        <div class="quiz-actions">
+            <button id="nextBtn" onclick="nextQuestion()">Next ▶</button>
+        </div>
     </div>
 
     <!-- RESULT PAGE -->
@@ -44,11 +45,11 @@
             <p id="result-text"></p>
         </div>
 
-        <button onclick="location.reload()">Play Again 🔁</button>
+        <div class="result-actions">
+            <button onclick="location.reload()">Play Again 🔁</button>
+        </div>
     </div>
 
 <script src="script.js"></script>
 </body>
 </html>
-
-
