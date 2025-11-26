@@ -158,12 +158,20 @@ button:hover {
 /* -------------------------------------------------- */
 /* NEW FIX 1: Make screens vertically centered on all devices */
 /* -------------------------------------------------- */
-.screen {
+/* Center ONLY the login screen */
+#login-screen {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Quiz & result screens should start from top */
+#quiz-screen,
+#result-screen {
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 /* -------------------------------------------------- */
@@ -198,4 +206,5 @@ button:hover {
     height: 20px;
     color: #ff7777;
 }
+
 
