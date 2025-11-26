@@ -5,18 +5,13 @@
     box-sizing: border-box;
 }
 
-/* SMOOTH BACKGROUND */
+/* BACKGROUND */
 body {
     background: radial-gradient(circle at top, #1a0030, #0d0018 40%, #05000c);
     font-family: "Poppins", sans-serif;
     color: #fff;
     text-align: center;
     overflow-x: hidden;
-}
-
-/* When on login, prevent body scroll (toggle via JS) */
-body.login-active {
-    overflow: hidden;
 }
 
 /* NOISE OVERLAY */
@@ -27,47 +22,42 @@ body::before {
     pointer-events: none;
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAFhAIyCheZvQAAAABJRU5ErkJggg==");
     opacity: 0.05;
-    z-index: 0;
 }
 
 /* -------------------------------------------------- */
-/* FIXED: DEFAULT SCREEN LAYOUT (NO MORE GAP!) */
+/* 🔥 PERFECT SCREEN SYSTEM — NO SCROLL, NO SHIFTING  */
 /* -------------------------------------------------- */
 .screen {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
+    min-height: 100vh;
     padding: 20px;
-    position: relative;
-    z-index: 2;
+    display: none;
 }
 
-/* -------------------------------------------------- */
-/* LOGIN SCREEN — CENTER ONLY THIS SCREEN */
-/* -------------------------------------------------- */
-#login-screen {
-    min-height: 100dvh;
-    height: 100dvh;
+.screen.active {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-bottom: env(safe-area-inset-bottom);
 }
 
-/* -------------------------------------------------- */
-/* QUIZ & RESULT SCREEN — START FROM TOP */
-/* -------------------------------------------------- */
+/* LOGIN SCREEN CENTERED */
+#login-screen {
+    justify-content: center;
+}
+
+/* QUIZ + RESULT SCREEN (top aligned) */
 #quiz-screen,
 #result-screen {
     padding-top: 40px;
-    padding-bottom: 40px;
 }
 
 /* TITLES */
 .title {
     font-size: 2.3rem;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .subtitle {
@@ -76,7 +66,7 @@ body::before {
     margin-bottom: 25px;
 }
 
-/* INPUT + BUTTON ROW */
+/* INPUT AREA */
 .input-area {
     display: flex;
     justify-content: center;
@@ -94,7 +84,7 @@ input {
     font-size: 1rem;
 }
 
-/* BUTTONS */
+/* BUTTON */
 button {
     padding: 15px 30px;
     background: #ff4df0;
@@ -103,64 +93,51 @@ button {
     color: #fff;
     font-size: 1.05rem;
     cursor: pointer;
-    transition: 0.15s ease;
-    white-space: nowrap;
+    transition: 0.2s;
 }
 
 button:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
     background: #ff2ecb;
 }
 
-/* GLASS CARDS */
+/* GLASS CARD */
 .glass {
     background: rgba(255, 255, 255, 0.10);
-    /* NOTE: backdrop-filter is nice visually but not captured by html2canvas */
-    backdrop-filter: blur(8px);
-    border-radius: 18px;
-    padding: 20px;
-    margin: 16px auto;
-    width: 92%;
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 25px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 500px;
 }
 
 /* OPTIONS */
 .option {
     background: #8228ff;
     padding: 14px;
-    margin: 10px 0;
-    border-radius: 12px;
+    margin: 12px 0;
+    border-radius: 14px;
     cursor: pointer;
-    transition: 0.12s;
-    text-align: center;
-    user-select: none;
+    transition: 0.2s;
 }
 
 .option:hover {
     background: #a66bff;
-    transform: scale(1.02);
+    transform: scale(1.03);
 }
 
 .option.selected {
     background: #d36aff;
-    transform: scale(1.03);
+    transform: scale(1.05);
     box-shadow: 0 0 10px #ff9aff;
 }
 
-/* RESULT TEXT CARD */
+/* RESULT CARD */
 #result-card {
     background: #1a0030;
-    border: 2px solid rgba(255,255,255,0.08);
-    border-radius: 16px;
-    padding: 20px;
-    margin: auto;
-    width: 90%;
-    max-width: 460px;
-    text-align: center;
-}
-
-.endmsg {
-    font-size: 1.12rem;
-    margin-top: 12px;
+    border: 2px solid rgba(255,255,255,0.1);
+    padding: 25px;
 }
 
 /* FLOATING DECOR */
@@ -168,81 +145,28 @@ button:hover {
     position: fixed;
     top: -60px;
     font-size: 2rem;
-    opacity: 0.22;
+    opacity: 0.25;
     animation: float 14s ease-in-out infinite;
     filter: blur(0.5px);
-    z-index: 1;
+    z-index: -1;
 }
 
-.delay1 { left: 18%; animation-duration: 18s; }
-.delay2 { left: 72%; animation-duration: 20s; }
+.delay1 { left: 20%; animation-duration: 18s; }
+.delay2 { left: 70%; animation-duration: 20s; }
 
 @keyframes float {
     from { transform: translateY(-60px); }
     to { transform: translateY(120vh); }
 }
 
-/* QUIZ / RESULT ACTIONS */
-.quiz-actions {
-    margin-top: 12px;
-    display: flex;
-    justify-content: center;
-}
-
-#nextBtn {
-    min-width: 140px;
-    border-radius: 26px;
-}
-
-/* Group and center result button(s) */
-.result-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    align-items: center;
-    margin-top: 18px;
-}
-
-.result-actions button {
-    width: 88%;
-    max-width: 420px;
-    padding: 14px 20px;
-    border-radius: 28px;
-}
-
 /* MOBILE FIXES */
 @media (max-width: 600px) {
-
-    input {
+    input, button {
         width: 100%;
     }
-
-    button {
-        width: 100%;
-    }
-
     .floating-icons {
         display: none !important;
     }
-
-    .title {
-        font-size: 1.9rem;
-    }
-
-    .glass {
-        padding: 16px;
-    }
-
-    .option {
-        padding: 12px;
-        margin: 8px 0;
-        border-radius: 12px;
-    }
-}
-
-/* HIDE UTILITY */
-.hidden {
-    display: none;
 }
 
 /* ERROR */
@@ -251,3 +175,5 @@ button:hover {
     height: 20px;
     color: #ff7777;
 }
+
+.hidden { display: none; }
