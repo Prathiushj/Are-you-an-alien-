@@ -1,25 +1,19 @@
-/* -------- RESET -------- */
+/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-}
-
-/* -------- BACKGROUND -------- */
+/* SMOOTH BACKGROUND */
 body {
     background: radial-gradient(circle at top, #1a0030, #0d0018 40%, #05000c);
     font-family: "Poppins", sans-serif;
     color: #fff;
     text-align: center;
-    overflow-x: hidden;
 }
 
-/* Noise overlay for smooth gradient */
+/* NOISE OVERLAY (removes banding) */
 body::before {
     content: "";
     position: fixed;
@@ -27,24 +21,20 @@ body::before {
     pointer-events: none;
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAFhAIyCheZvQAAAABJRU5ErkJggg==");
     opacity: 0.05;
-    z-index: 1;
 }
 
-/* -------- SCREEN CONTAINER -------- */
+/* SCREEN CENTERING */
 .screen {
-    position: relative;
-    z-index: 2;
-    padding: 50px 20px;
-    max-width: 900px;
-    margin: auto;
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 20px;
 }
 
-/* -------- TITLES -------- */
+/* TITLES */
 .title {
     font-size: 2.3rem;
     font-weight: 700;
-    margin-bottom: 12px;
-    color: #ffffff;
+    margin-bottom: 10px;
 }
 
 .subtitle {
@@ -53,33 +43,35 @@ body::before {
     margin-bottom: 25px;
 }
 
-/* -------- LOGIN INPUT + BUTTON -------- */
-#login-screen {
-    margin-top: 80px;
+/* INPUT + BUTTON ROW */
+.input-area {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 input {
-    width: 70%;
-    max-width: 500px;
-    padding: 14px 18px;
+    width: 65%;
+    max-width: 400px;
+    padding: 15px 18px;
     border-radius: 30px;
     border: none;
     outline: none;
     font-size: 1rem;
-    margin-bottom: 15px;
 }
 
+/* BUTTONS */
 button {
-    display: inline-block;
-    padding: 14px 30px;
+    padding: 15px 30px;
     background: #ff4df0;
     border: none;
     border-radius: 30px;
     color: #fff;
     font-size: 1.05rem;
     cursor: pointer;
-    transition: 0.2s ease;
-    margin-left: 10px;
+    transition: 0.2s;
+    white-space: nowrap;
 }
 
 button:hover {
@@ -87,30 +79,22 @@ button:hover {
     background: #ff2ecb;
 }
 
-/* Center input + button on mobile */
-@media (max-width: 600px) {
-    input, button {
-        width: 100%;
-        max-width: 100%;
-        margin-left: 0 !important;
-    }
-}
-
-/* -------- QUIZ CONTAINER -------- */
+/* GLASS CARDS */
 .glass {
     background: rgba(255, 255, 255, 0.10);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     border-radius: 20px;
     padding: 25px;
-    margin-bottom: 25px;
+    margin: 20px auto;
+    width: 90%;
 }
 
-/* -------- OPTIONS -------- */
+/* OPTIONS */
 .option {
     background: #8228ff;
     padding: 14px;
     margin: 12px 0;
-    border-radius: 15px;
+    border-radius: 14px;
     cursor: pointer;
     transition: 0.2s;
 }
@@ -126,46 +110,61 @@ button:hover {
     box-shadow: 0 0 10px #ff9aff;
 }
 
-/* --------  RESULT CARD -------- */
+/* RESULT TEXT */
 #result-card {
+    max-width: 450px;
     margin: auto;
-    width: 90%;
-    max-width: 500px;
 }
 
 .endmsg {
-    font-size: 1.15rem;
-    margin-top: 20px;
-    color: #ffcaff;
+    font-size: 1.2rem;
+    margin-top: 15px;
 }
 
-/* -------- FLOATING DECORATIONS -------- */
+/* FLOATING DECOR (cleaner) */
 .floating-icons {
     position: fixed;
-    top: -50px;
+    top: -60px;
     font-size: 2rem;
     opacity: 0.25;
-    animation: float 12s ease-in-out infinite;
-    filter: blur(0.4px);
-    z-index: 0;
+    animation: float 14s ease-in-out infinite;
+    filter: blur(0.5px);
 }
 
-.delay1 { left: 20%; animation-duration: 15s; }
-.delay2 { left: 70%; animation-duration: 18s; }
+.delay1 { left: 20%; animation-duration: 18s; }
+.delay2 { left: 70%; animation-duration: 20s; }
 
 @keyframes float {
-    from { transform: translateY(-50px); }
-    to { transform: translateY(110vh); }
+    from { transform: translateY(-60px); }
+    to { transform: translateY(120vh); }
 }
 
-/* Hide on mobile for cleaner view */
+/* MOBILE FIXES */
 @media (max-width: 600px) {
+    .screen {
+        margin-top: 50px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+
     .floating-icons {
         display: none;
     }
 }
 
-/* -------- HIDE UTILITY -------- */
+/* HIDE UTILITY */
 .hidden {
     display: none;
+}
+
+.error {
+    margin-top: 10px;
+    height: 20px;
+    color: #ff7777;
 }
