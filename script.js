@@ -143,6 +143,7 @@ function generateResult() {
     <h2>${type}</h2>
     <p>You are <strong>${percent}%</strong> alien.</p>
     <p class="endmsg">✨ The galaxy sees your true energy.</p>
+    <p class="endmsge"> Not a fruad Paripadi.</p>
   `;
 }
 
@@ -154,3 +155,4 @@ function escapeJs(s){ return String(s).replace(/'/g,"\\'").replace(/"/g,'\\"'); 
 document.addEventListener("DOMContentLoaded", () => {
   showQuestion();
 });
+
