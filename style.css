@@ -158,13 +158,48 @@ button:hover {
     }
 }
 
+/* -------------------------------------------------- */
+/* NEW FIX 1: Make screens vertically centered on all devices */
+/* -------------------------------------------------- */
+.screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* -------------------------------------------------- */
+/* NEW FIX 2: Hide floating icons for mobile properly */
+/* -------------------------------------------------- */
+@media (max-width: 600px) {
+    .floating-icons {
+        display: none !important;
+    }
+}
+
+/* -------------------------------------------------- */
+/* NEW FIX 3: Solid background for result-card (for screenshots) */
+/* -------------------------------------------------- */
+#result-card {
+    background: #1a0030;
+    border: 2px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 25px;
+    margin: auto;
+    width: 90%;
+    max-width: 450px;
+}
+
 /* HIDE UTILITY */
 .hidden {
     display: none;
 }
+
 
 .error {
     margin-top: 10px;
     height: 20px;
     color: #ff7777;
 }
+
