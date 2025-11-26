@@ -41,12 +41,6 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Neon headings */
-.neon {
-    text-shadow: 0 0 8px #ff91ff, 0 0 15px #ff29c5;
-    color: #ffb2ff;
-    font-weight: 700;
-}
 
 /* Glass container */
 .glass {
@@ -127,3 +121,42 @@ button:hover {
     font-size: 1.2rem;
     color: #ffbaff;
 }
+
+#login-screen input, 
+#login-screen button {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#login-screen input {
+    width: 50%;
+    margin-right: 10px;
+}
+
+@media (max-width: 600px) {
+
+    input {
+        width: 80% !important;
+        margin-bottom: 15px;
+    }
+
+    button {
+        width: 80%;
+    }
+
+    #login-screen {
+        padding: 20px;
+    }
+
+    .glass {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .option {
+        font-size: 0.95rem;
+        padding: 12px;
+    }
+}
+
+
