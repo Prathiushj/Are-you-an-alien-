@@ -14,6 +14,11 @@ body {
     overflow-x: hidden;
 }
 
+/* When on login, prevent body scroll (toggle via JS) */
+body.login-active {
+    overflow: hidden;
+}
+
 /* NOISE OVERLAY */
 body::before {
     content: "";
@@ -22,6 +27,7 @@ body::before {
     pointer-events: none;
     background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAFhAIyCheZvQAAAABJRU5ErkJggg==");
     opacity: 0.05;
+    z-index: 0;
 }
 
 /* -------------------------------------------------- */
@@ -32,13 +38,16 @@ body::before {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
+    position: relative;
+    z-index: 2;
 }
 
 /* -------------------------------------------------- */
 /* LOGIN SCREEN — CENTER ONLY THIS SCREEN */
 /* -------------------------------------------------- */
 #login-screen {
-    min-height: 100vh;
+    min-height: 100dvh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -94,60 +103,64 @@ button {
     color: #fff;
     font-size: 1.05rem;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.15s ease;
     white-space: nowrap;
 }
 
 button:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
     background: #ff2ecb;
 }
 
 /* GLASS CARDS */
 .glass {
     background: rgba(255, 255, 255, 0.10);
-    backdrop-filter: blur(12px);
-    border-radius: 20px;
-    padding: 25px;
-    margin: 20px auto;
-    width: 90%;
+    /* NOTE: backdrop-filter is nice visually but not captured by html2canvas */
+    backdrop-filter: blur(8px);
+    border-radius: 18px;
+    padding: 20px;
+    margin: 16px auto;
+    width: 92%;
 }
 
 /* OPTIONS */
 .option {
     background: #8228ff;
     padding: 14px;
-    margin: 12px 0;
-    border-radius: 14px;
+    margin: 10px 0;
+    border-radius: 12px;
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.12s;
+    text-align: center;
+    user-select: none;
 }
 
 .option:hover {
     background: #a66bff;
-    transform: scale(1.03);
+    transform: scale(1.02);
 }
 
 .option.selected {
     background: #d36aff;
-    transform: scale(1.05);
+    transform: scale(1.03);
     box-shadow: 0 0 10px #ff9aff;
 }
 
 /* RESULT TEXT CARD */
 #result-card {
     background: #1a0030;
-    border: 2px solid rgba(255,255,255,0.1);
-    border-radius: 20px;
-    padding: 25px;
+    border: 2px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 20px;
     margin: auto;
     width: 90%;
-    max-width: 450px;
+    max-width: 460px;
+    text-align: center;
 }
 
 .endmsg {
-    font-size: 1.2rem;
-    margin-top: 15px;
+    font-size: 1.12rem;
+    margin-top: 12px;
 }
 
 /* FLOATING DECOR */
@@ -155,23 +168,49 @@ button:hover {
     position: fixed;
     top: -60px;
     font-size: 2rem;
-    opacity: 0.25;
+    opacity: 0.22;
     animation: float 14s ease-in-out infinite;
     filter: blur(0.5px);
-    z-index: -1;
+    z-index: 1;
 }
 
-.delay1 { left: 20%; animation-duration: 18s; }
-.delay2 { left: 70%; animation-duration: 20s; }
+.delay1 { left: 18%; animation-duration: 18s; }
+.delay2 { left: 72%; animation-duration: 20s; }
 
 @keyframes float {
     from { transform: translateY(-60px); }
     to { transform: translateY(120vh); }
 }
 
-/* -------------------------------------------------- */
+/* QUIZ / RESULT ACTIONS */
+.quiz-actions {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+}
+
+#nextBtn {
+    min-width: 140px;
+    border-radius: 26px;
+}
+
+/* Group and center result button(s) */
+.result-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+    margin-top: 18px;
+}
+
+.result-actions button {
+    width: 88%;
+    max-width: 420px;
+    padding: 14px 20px;
+    border-radius: 28px;
+}
+
 /* MOBILE FIXES */
-/* -------------------------------------------------- */
 @media (max-width: 600px) {
 
     input {
@@ -187,7 +226,17 @@ button:hover {
     }
 
     .title {
-        font-size: 2rem;
+        font-size: 1.9rem;
+    }
+
+    .glass {
+        padding: 16px;
+    }
+
+    .option {
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 12px;
     }
 }
 
