@@ -141,9 +141,6 @@ button:hover {
 
 /* MOBILE FIXES */
 @media (max-width: 600px) {
-    .screen {
-        margin-top: 50px;
-    }
 
     input {
         width: 100%;
@@ -195,7 +192,6 @@ button:hover {
 .hidden {
     display: none;
 }
-
 
 .error {
     margin-top: 10px;
