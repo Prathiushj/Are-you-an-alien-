@@ -1,48 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Are You an Alien?</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Are You an Alien?</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <!-- Floating Decorations -->
-    <div class="floating-icons">👽</div>
-    <div class="floating-icons delay1">🛸</div>
-    <div class="floating-icons delay2">✨</div>
+  <!-- Floating Decorations -->
+  <div class="floating-icons">👽</div>
+  <div class="floating-icons delay1">🛸</div>
+  <div class="floating-icons delay2">✨</div>
 
-    <!-- LOGIN PAGE -->
-    <div id="login-screen" class="screen active">
-        <h1 class="title">👽 Welcome Back Agent</h1>
-        <p class="subtitle">Access restricted. Only one special person may enter.</p>
+  <!-- LOGIN PAGE (active by default) -->
+  <div id="login-screen" class="screen active" aria-hidden="false">
+    <div class="screen-inner">
+      <h1 class="title">👽 Welcome Back Agent</h1>
+      <p class="subtitle">Access restricted. Only one special person may enter.</p>
 
-        <div class="input-area">
-            <input type="text" id="nameInput" placeholder="Type your secret name...">
-            <button onclick="checkName()">Enter the Spaceship</button>
-        </div>
+      <div class="input-area">
+        <input id="nameInput" type="text" placeholder="Type your secret name..." aria-label="name" />
+        <button id="enterBtn" onclick="checkName()">Enter the Spaceship</button>
+      </div>
 
-        <p id="error" class="error"></p>
+      <p id="error" class="error" role="alert" aria-live="polite"></p>
     </div>
+  </div>
 
-    <!-- QUIZ PAGE -->
-    <div id="quiz-screen" class="screen">
-        <h1 class="title">👾 Are You an Alien?</h1>
-        <div id="quiz-container" class="glass"></div>
+  <!-- QUIZ PAGE -->
+  <div id="quiz-screen" class="screen" aria-hidden="true">
+    <div class="screen-inner scrollable">
+      <h1 class="title">👾 Are You an Alien?</h1>
+
+      <div id="quiz-container" class="glass" role="region" aria-live="polite"></div>
+
+      <div class="quiz-actions">
+        <button id="nextBtn" onclick="nextQuestion()">Next ▶</button>
+      </div>
     </div>
+  </div>
 
-    <!-- RESULT PAGE -->
-    <div id="result-screen" class="screen">
-        <h1 class="title">🛸 Your Alien Identity</h1>
+  <!-- RESULT PAGE -->
+  <div id="result-screen" class="screen" aria-hidden="true">
+    <div class="screen-inner scrollable">
+      <h1 class="title">🛸 Your Alien Identity</h1>
 
-        <div id="result-card" class="glass">
-            <p id="result-text"></p>
-        </div>
+      <div id="result-card" class="glass" role="status">
+        <p id="result-text"></p>
+      </div>
 
+      <div class="result-actions">
         <button onclick="location.reload()">Play Again 🔁</button>
+      </div>
     </div>
+  </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
