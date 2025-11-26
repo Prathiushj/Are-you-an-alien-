@@ -97,12 +97,3 @@ function generateResult() {
     `;
 }
 
-// Download as Image
-function downloadImage() {
-    html2canvas(document.getElementById("result-card")).then(canvas => {
-        const link = document.createElement("a");
-        link.download = "alien_result.png";
-        link.href = canvas.toDataURL();
-        link.click();
-    });
-}
