@@ -1,9 +1,27 @@
 body {
     margin: 0;
-    background: #1d0136;
-    font-family: "Comic Sans MS", sans-serif;
+    background: linear-gradient(135deg, #12001a, #2d0050);
+    font-family: "Poppins", sans-serif;
     color: #fff;
     text-align: center;
+    overflow-x: hidden;
+}
+
+/* Floating emoji animation */
+.floating-icons {
+    position: absolute;
+    top: -20px;
+    left: 10%;
+    font-size: 2.5rem;
+    opacity: 0.6;
+    animation: float 8s linear infinite;
+}
+.delay1 { left: 50%; animation-duration: 10s; }
+.delay2 { left: 80%; animation-duration: 12s; }
+
+@keyframes float {
+    0% { transform: translateY(0); opacity: 0.5; }
+    100% { transform: translateY(120vh); opacity: 0; }
 }
 
 .screen {
@@ -14,40 +32,64 @@ body {
     display: none;
 }
 
-.title {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+.fade {
+    animation: fadeIn 0.8s ease;
 }
 
-.subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    opacity: 0.8;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Neon headings */
+.neon {
+    text-shadow: 0 0 8px #ff91ff, 0 0 15px #ff29c5;
+    color: #ffb2ff;
+    font-weight: 700;
+}
+
+/* Glass container */
+.glass {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    padding: 30px;
+    border-radius: 20px;
+    margin: 20px auto;
+    width: 80%;
+}
+
+#result-card {
+    padding: 30px;
+    width: 80%;
+    margin: auto;
 }
 
 input {
     padding: 12px;
     width: 60%;
-    border-radius: 20px;
+    border-radius: 25px;
     border: none;
+    margin-top: 15px;
     font-size: 1rem;
+    outline: none;
 }
 
 button {
-    margin-top: 20px;
-    padding: 12px 25px;
+    margin-top: 25px;
+    padding: 12px 30px;
     background: #ff4df0;
     border: none;
-    border-radius: 20px;
-    font-size: 1rem;
+    border-radius: 25px;
+    font-size: 1.1rem;
     color: #fff;
     cursor: pointer;
     transition: 0.2s;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
 }
 
 button:hover {
-    transform: scale(1.05);
-    background: #ff29c5;
+    transform: scale(1.08);
+    background: #ff2ecb;
 }
 
 .error {
@@ -56,19 +98,11 @@ button:hover {
     height: 20px;
 }
 
-/* Cartoon Alien Style */
-#quiz-container {
-    margin: 20px auto;
-    width: 80%;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    border-radius: 20px;
-}
-
+/* Quiz Options */
 .option {
     background: #8228ff;
-    padding: 12px;
-    margin: 10px;
+    padding: 14px;
+    margin: 12px;
     border-radius: 15px;
     cursor: pointer;
     transition: 0.2s;
@@ -76,4 +110,20 @@ button:hover {
 
 .option:hover {
     background: #a66bff;
+    transform: scale(1.03);
+}
+
+.option.selected {
+    background: #d36aff;
+    transform: scale(1.07);
+    box-shadow: 0 0 12px #ff8aff;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.endmsg {
+    font-size: 1.2rem;
+    color: #ffbaff;
 }
